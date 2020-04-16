@@ -133,7 +133,7 @@ After installing the necessary dependencies, these are the steps I took to migra
    - `test.ts`
 3. Run the following:
    ```
-   nx generate @nrwl/jest:jest-project --project components-library-tag
+   ng generate @nrwl/jest:jest-project --project components-library-tag
    ```
 4. Add the following to `module.exports` in `tag/jest.config.js`:
 
