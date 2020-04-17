@@ -206,7 +206,9 @@ After installing the necessary dependencies, these are the steps I took to migra
        const value = 5
      })
      ```
-   - Jest does not seem to like stubbing a provider with `useValue` if that value will change at all
+   - Jest does not seem to like stubbing a provider with `useValue` if that value will change at all. In those scenarios, use `useClass`.
+   
+    - Jest does not support `toExist` use `toBeDefined` or `toBeTruthy` instead
 
    - Using [Spectator](https://github.com/ngneat/spectator) mocks, which rely on Jasmine spys internally. Luckily Spectator provides [Jest support](https://github.com/ngneat/spectator#jest-support) for its mocks, and all it requires is a change to imports:
 
