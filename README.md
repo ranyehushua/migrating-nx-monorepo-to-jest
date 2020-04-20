@@ -143,17 +143,12 @@ After installing the necessary dependencies, these are the steps I took to migra
    module.exports = {
      //...
      setupFilesAfterEnv: ['../../../test-setup.ts'],
-     globals: {
-       'ts-jest': {
-         diagnostics: false
-       }
-     }
    }
    ```
 
-   We're adding the `setupFilesAfterEnv` property and pointing it to our global setup file. We're turning off `ts-jest` diagnostics because Jest throws errors when it encounters our custom Jasmine matchers in our `test-helpers` library. If we convert these to custom Jest matchers we can eventually turn diagnostics back on.
+   We're adding the `setupFilesAfterEnv` property and pointing it to our global setup file.
 
-   We could probably technically move `snapshotSerializers` to the global `jest.config.js`, but by default Nx includes them in the local Jest config files because to support multi-platform monorepos.
+   `snapshotSerializers` can be removed from the jest.config since we have it in the global `jest.config.js`, but by default Nx includes them in the local Jest config files because to support multi-platform monorepos.
 
    The file should look like something like this when you're done:
 
@@ -164,17 +159,7 @@ After installing the necessary dependencies, these are the steps I took to migra
      name: 'components-library-tag',
      preset: '../../../jest.config.js',
      coverageDirectory: '../../../coverage/libs/components-library/tag',
-     snapshotSerializers: [
-       'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
-       'jest-preset-angular/build/AngularSnapshotSerializer.js',
-       'jest-preset-angular/build/HTMLCommentSerializer.js'
-     ],
-     setupFilesAfterEnv: ['../../../test-setup.ts'],
-     globals: {
-       'ts-jest': {
-         diagnostics: false
-       }
-     }
+     setupFilesAfterEnv: ['../../../test-setup.ts']
    }
    ```
 
