@@ -142,7 +142,7 @@ After installing the necessary dependencies, these are the steps I took to migra
 
    module.exports = {
      //...
-     setupFilesAfterEnv: ['../../../test-setup.ts'],
+     setupFilesAfterEnv: [ '../../../jest.setup.ts' ]
    }
    ```
 
