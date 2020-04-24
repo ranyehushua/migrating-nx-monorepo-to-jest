@@ -159,7 +159,7 @@ After installing the necessary dependencies, these are the steps I took to migra
      name: 'components-library-tag',
      preset: '../../../jest.config.js',
      coverageDirectory: '../../../coverage/libs/components-library/tag',
-     setupFilesAfterEnv: ['../../../test-setup.ts']
+     setupFilesAfterEnv: ['../../../jest.setup.ts']
    }
    ```
    
@@ -198,6 +198,8 @@ After installing the necessary dependencies, these are the steps I took to migra
    - Since we are using both jasmine and jest at the same time, we still have some jasmine libs that are declaring the `expect` matcher as a Jasmine matcher, not Jest. In order to use jest specific methods using `expect` need to cast expect as `any` - such as `( <any>expect ).objectContaining`. This is just temporary, once we have removed all jasmine libs, we can revert the `any` casting.
    
     - Jest does not support `toExist` use `toBeDefined` or `toBeTruthy` instead
+    
+    - Jest does not support `toHaveText` on its own. Spectator jest tests will support this, but if test is too large to convert, use `expect($element.innerHtml).toContain($text)`
 
    - Using [Spectator](https://github.com/ngneat/spectator) mocks, which rely on Jasmine spys internally. Luckily Spectator provides [Jest support](https://github.com/ngneat/spectator#jest-support) for its mocks, and all it requires is a change to imports:
 
