@@ -194,6 +194,8 @@ After installing the necessary dependencies, these are the steps I took to migra
      })
      ```
    - Jest does not seem to like stubbing a provider with `useValue` if that value will change at all. In those scenarios, use `useClass`.
+
+   - Since we are using both jasmine and jest at the same time, we still have some jasmine libs that are declaring the `expect` matcher as a Jasmine matcher, not Jest. In order to use jest specific methods using `expect` need to cast expect as `any` - such as `( <any>expect ).objectContaining`. This is just temporary, once we have removed all jasmine libs, we can revert the `any` casting.
    
     - Jest does not support `toExist` use `toBeDefined` or `toBeTruthy` instead
 
